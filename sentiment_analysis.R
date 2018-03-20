@@ -1,6 +1,8 @@
-# STEP 1: Import Packages
+# STEP 1: Import Packages and Functions
 library(twitteR)
 library(ROAuth)
+library(shiny)
+source("lib/functions.R")
 
 # STEP 2: Load Consumer Keys
 consumer_key <- "your_info_here" # replace with your info
