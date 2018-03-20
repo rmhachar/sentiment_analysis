@@ -8,6 +8,27 @@ consumer_secret <- "your_info_here"
 access_token <- "your_info_here"
 access_secret <- "your_info_here"
 
-# Set up the connection
+# STEP 3: Set up the connection
 setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
 
+# STEP 4: Open with Shiny
+
+ui <- fluidPage(
+  br(),
+  textInput("n", "Sentiment Analysis", value = "Input Ticker"),
+  actionButton("go", "Perform Analysis"),
+  br(),
+  br(),
+  textOutput("test")
+)
+
+server <- function(input, output) {
+  
+  tracker <- eventReactive(input$go,input$n)
+  
+  output$test <- renderText(sentiment_analysis(tracker()))
+
+  
+}
+
+shinyApp(ui, server)
